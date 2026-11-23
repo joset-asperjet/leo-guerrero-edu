@@ -1,0 +1,258 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Neue Machina';
+  src: url('/fonts/neuemachina-light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Machina';
+  src: url('/fonts/neuemachina-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Machina';
+  src: url('/fonts/neuemachina-ultrabold.otf') format('opentype');
+  font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('/fonts/NeueHaasDisplayThin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('/fonts/NeueHaasDisplayLight.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('/fonts/NeueHaasDisplayMediu.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('/fonts/NeueHaasDisplayBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-mint: #7bf9ba;
+  --color-obsidian: #1b1b1b;
+  --color-stone: #c3c1b6;
+  --color-slate: #4b4b4b;
+  --font-display: 'Neue Machina', 'Neue Haas Display', 'Open Sans', sans-serif;
+  --font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-handwriting: 'Caveat', cursive;
+}
+
+@layer base {
+  html {
+    background-color: #1b1b1b;
+    color: #c3c1b6;
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #1b1b1b;
+    color: #c3c1b6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: 'Neue Haas Display', 'Open Sans', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Editorial strict square geometry */
+  *, *::before, *::after {
+    border-radius: 0px;
+  }
+}
+
+/* Editorial architectural grid pattern */
+.bg-editorial-grid {
+  background-image:
+    linear-gradient(to right, rgba(75, 75, 75, 0.16) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(75, 75, 75, 0.16) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.bg-editorial-grid-dense {
+  background-image:
+    linear-gradient(to right, rgba(75, 75, 75, 0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(75, 75, 75, 0.2) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Custom editorial scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1b1b1b;
+}
+::-webkit-scrollbar-thumb {
+  background: #4b4b4b;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7bf9ba;
+}
+
+/* Infinite horizontal marquee for project logos */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 34s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Seductive 3D CTA button with light shimmer sweep */
+@keyframes cta-shimmer-sweep {
+  0% {
+    transform: translateX(-160%) skewX(-20deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.95;
+  }
+  65% {
+    transform: translateX(260%) skewX(-20deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(260%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes cta-pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 16px rgba(123, 249, 186, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 28px rgba(123, 249, 186, 0.6));
+  }
+}
+
+.animate-cta-shimmer {
+  animation: cta-shimmer-sweep 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-cta-glow {
+  animation: cta-pulse-glow 3.5s ease-in-out infinite;
+}
+
+/* Animated handwritten arrow draw loop (every 5 seconds) */
+@keyframes draw-arrow-stem {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  3% {
+    opacity: 1;
+  }
+  20%, 82% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  92% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+}
+
+@keyframes draw-arrow-head {
+  0%, 16% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  28%, 82% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  92% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+}
+
+.animate-draw-stem {
+  stroke-dasharray: 100;
+  animation: draw-arrow-stem 5s ease-in-out infinite;
+}
+
+.animate-draw-head {
+  stroke-dasharray: 100;
+  animation: draw-arrow-head 5s ease-in-out infinite;
+}
+
+/* QWERTY terminal blinking cursor */
+@keyframes qwerty-cursor-blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+.animate-qwerty-cursor {
+  animation: qwerty-cursor-blink 0.75s step-end infinite;
+}
