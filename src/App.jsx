@@ -15,6 +15,7 @@ import AboutView from './components/AboutView';
 import TalksView from './components/TalksView';
 import ContactView from './components/ContactView';
 import UnderDevelopmentView from './components/UnderDevelopmentView';
+import PageLoader from './components/PageLoader';
 import { trackEngine } from './audio/trackEngine';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -27,6 +28,7 @@ function getInitialView() {
 }
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
   const [activeView, setActiveView] = useState(getInitialView);
 
   useEffect(() => {
@@ -53,6 +55,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#1b1b1b] text-[#c3c1b6] flex flex-col">
+      {loading && <PageLoader onFinish={() => setLoading(false)} />}
       <Navbar activeView={activeView} onNavigate={handleNavigate} />
 
       <main className="flex-1">
